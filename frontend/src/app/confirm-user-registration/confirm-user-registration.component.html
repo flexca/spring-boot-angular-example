@@ -1,0 +1,90 @@
+<section class="ftco-section">
+  
+    <div class="container">
+        <div class="row justify-content-center">
+            
+            <mat-card class="user-registration-complete-card">
+        
+                <mat-card-header>
+                  
+                  <mat-card-title>
+                    <h2>Complete your registration</h2>
+                  </mat-card-title>
+        
+                  <mat-card-subtitle>
+                    <app-info-message [visible]="confirmationError" [type]="errorMessageType" [message]="confirmationErrorMessage" />
+                  </mat-card-subtitle>
+        
+                </mat-card-header>
+        
+                <mat-card-content>
+    
+                    <form *ngIf="tokenValid" class="form-full-width">
+    
+                        <mat-form-field class="form-field-full-width">
+                            <mat-label>Set your password</mat-label>
+                            <input matInput name="userPassword" [(ngModel)]="model.userPassword" [type]="hidePassword ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                              <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                  
+                        <mat-form-field class="form-field-full-width">
+                            <mat-label>Reenter password</mat-label>
+                            <input matInput name="userPasswordConfirmation" [(ngModel)]="model.userPasswordConfirmation" [type]="hideReenterPassword ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="hideReenterPassword = !hideReenterPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideReenterPassword">
+                              <mat-icon>{{hideReenterPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+
+                        <button mat-raised-button color="primary" (click)="onSubmit()">Complete registration</button>
+    
+                    </form>
+                    
+                    <div *ngIf="!tokenValid">
+                        Cannot complete organization registration for given token and organization
+                    </div>
+
+                </mat-card-content>
+            
+            </mat-card>
+
+            <!--div class="registration-wrap flex-ca-form">
+
+                <div *ngIf="tokenValid">
+
+                    <h3 class="text-center mb-4">Complete your registration</h3>
+                    
+                    <div *ngIf="confirmationError" class="alert alert-danger" role="alert">
+                        {{confirmationErrorMessage}}
+                    </div>
+
+                    <form  class="confirm-registration-form" (ngSubmit)="onSubmit()">
+                        
+                        <div class="mb-3">
+                            <label for="adminPassword">Set your password</label>
+                            <input type="password" id="userPassword" name="userPassword" class="form-control rounded-left" required [(ngModel)]="model.userPassword"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="adminPasswordConfirmation">Reenter password</label>
+                            <input type="password" id="userPasswordConfirmation" name="userPasswordConfirmation" class="form-control rounded-left" required [(ngModel)]="model.userPasswordConfirmation"/>
+                        </div>
+                        
+                        <div class="form-group" style="display:flex; justify-content:center; align-items:center;">
+                            <input type="submit" value="Complete registration" class="btn btn-primary rounded submit" style="margin-top: 20px;">
+                        </div>
+
+                    </form>
+                </div>
+
+                <div *ngIf="!tokenValid">
+                    Registration for given token and user cannot be done.
+                </div>
+
+            </div-->
+
+        </div>
+    </div>
+
+</section>

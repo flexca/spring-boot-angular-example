@@ -1,0 +1,37 @@
+<div class="home-menu" style="color: white;">
+        
+    <div class="menu">
+    
+        <div id="settings" class="menu-item" [ngClass]="{'selected-item': selectedItem === 'settings'}" (click)="selectItem('settings')">
+            <a [routerLink]="['/organization', organizationId, 'settings']"  class="menu-item">
+                
+                <div class="menu-content" [ngClass]="{'selected-item': selectedItem === 'settings'}">
+                    <div class="menu-center-content">
+                        <mat-icon>settings</mat-icon>
+                    </div>
+                    <div class="menu-center-content" style="margin-left: 10px;">
+                        Settings
+                    </div>
+                </div>
+
+            </a>
+        </div>
+
+        <div id="users" class="menu-item" [ngClass]="{'selected-item': selectedItem === 'users'}" (click)="selectItem('users')">
+            <a [routerLink]="['/organization', organizationId, 'users']" class="menu-item">
+                
+                <div class="menu-content" [ngClass]="{'selected-item': selectedItem === 'users'}">
+                    <div class="menu-center-content">
+                        <mat-icon>group</mat-icon>
+                    </div>
+                    <div class="menu-center-content" style="margin-left: 10px;">
+                        Users
+                    </div>
+                </div>
+
+            </a>
+        </div>
+
+    </div>
+
+</div>

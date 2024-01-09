@@ -1,0 +1,15 @@
+<h1 mat-dialog-title class="info-message">
+    <div class="info-message-center-content">
+        <mat-icon class="mat-icon-2" color="primary">warning</mat-icon>
+    </div>
+    <div class="info-message-center-content" style="margin-left: 5px;">
+        {{title}}
+    </div>
+</h1>
+<div mat-dialog-content>
+    {{content}}
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" mat-dialog-close (click)="okAction()">{{okButtonCaption}}</button>
+  <button mat-raised-button mat-dialog-close (click)="cancelAction()">{{cancelButtonCaption}}</button>
+</div>

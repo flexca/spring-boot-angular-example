@@ -1,0 +1,11 @@
+.info-message {
+    display: flex; 
+    flex-direction: row; 
+    padding: 10px;
+}
+
+.info-message-center-content {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}

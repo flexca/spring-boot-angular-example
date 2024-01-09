@@ -1,0 +1,18 @@
+server:
+  base-url: http://localhost:4200/
+
+database:
+  url: 'mongodb://localhost:27017/?timeoutMS=30000'
+  schema: flex_ca
+  encryption-key: secretkey
+
+mail:
+  username: info@flexca.org
+  password: password
+  smtp:
+    auth: true
+    starttls:
+      enable: true
+    host: localhost
+    port: 1025
+

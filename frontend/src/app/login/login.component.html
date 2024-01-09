@@ -1,0 +1,53 @@
+<section class="ftco-section">
+  
+  <div class="container">
+
+    <div class="row justify-content-center">
+
+      <mat-card class="login-card">
+        
+        <mat-card-header>
+          
+          <mat-card-title>
+            <h2>Login</h2>
+          </mat-card-title>
+
+          <mat-card-subtitle>
+            <app-info-message [visible]="loginError" [type]="errorMessageType" [message]="loginErrorMessage" />
+          </mat-card-subtitle>
+
+        </mat-card-header>
+
+        <mat-card-content>
+          
+          <form class="form-full-width">
+            
+            <mat-form-field class="form-field-full-width">
+              <mat-label>Email</mat-label>
+              <input matInput name="email" [(ngModel)]="model.email">
+            </mat-form-field>
+          
+            <mat-form-field class="form-field-full-width">
+              <mat-label>Password</mat-label>
+              <input matInput name="password" [(ngModel)]="model.password" [type]="hide ? 'password' : 'text'">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" (click)="onSubmit()">Login</button>
+
+          </form>
+
+        </mat-card-content>
+        <mat-card-actions>
+          <a [routerLink]="['/reset-password']" mat-button>Forget password?</a>
+          <a [routerLink]="['/registration']" mat-button >Registration</a>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+
+  </div>
+
+</section>

@@ -1,0 +1,46 @@
+.home-menu {
+    background-color: rgb(255, 255, 255);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0;
+    padding-right: 0;
+    height: 100%;
+    width: 200px;
+    border-right: 1px;
+    border-right-color: #3f51b5;
+    border-right-style: solid;
+}
+
+div.menu {
+    padding-top: 10px;
+}
+
+div.menu-item {
+    font-size: 18px; 
+    padding: 10px;
+}
+
+a.menu-item {
+    color: black;
+}
+
+a.menu-item:hover {
+    text-decoration: none
+}
+
+.selected-item {
+    background-color: #4f61c5;
+    color: white;
+}
+
+.menu-content {
+    display: flex; 
+    flex-direction: row; 
+    padding: 10px;
+}
+
+.menu-center-content {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}

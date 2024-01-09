@@ -1,0 +1,25 @@
+<div class="top-items">
+    
+  <div class="top-items-title">
+      <h2 style="margin: 0;">Users</h2>
+  </div>
+
+  <div class="top-items-actions">
+  
+      <button mat-mini-fab color="primary" [matMenuTriggerFor]="orgSettingsMenu">
+          <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #orgSettingsMenu="matMenu">
+          <button mat-menu-item (click)="addUser()">Add user</button>
+      </mat-menu>
+
+  </div>
+
+</div>
+
+<div style="padding: 20px;">
+    <app-table-wrapper *ngIf="usersSearchResult != undefined" [columns]="columns" [displayedColumns]="displayedColumns" 
+      [filterModel]="filterModel" [dataSource]="tableDataModel" [offset]="offset" [nextPage]="nextPageAvailable" 
+      (navigateToNextPage)="nextPage()" (navigateToPreviousPage)="previousPage()" (filtersOnChange)="filtersChanged($event)">
+    </app-table-wrapper>
+</div>

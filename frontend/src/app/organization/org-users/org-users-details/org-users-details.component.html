@@ -1,0 +1,105 @@
+<div class="top-items">
+    
+    <div class="top-items-title">
+        <h2 style="margin: 0;">User details</h2>
+    </div>
+
+    <div class="top-items-actions">
+    
+        <button mat-mini-fab color="primary" [matMenuTriggerFor]="userDetailsMenu" [disabled]="user.status !== 'active' && user.status !== 'disabled'">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #userDetailsMenu="matMenu">
+            <button mat-menu-item (click)="editUser($event)">Edit user</button>
+            <button *ngIf="user.status === 'active'" mat-menu-item (click)="showConfirmation($event)">Disable user</button>
+            <button *ngIf="user.status === 'disabled'" mat-menu-item (click)="showConfirmation($event)">Enable user</button>
+        </mat-menu>
+
+    </div>
+
+</div>
+
+<app-info-message [visible]="fetchUserError" [type]="errorMessageType" [message]="fetchUserErrorMessage" />
+
+<div *ngIf="!fetchUserError" class="details-wrapper">
+
+    <table class="details-table">
+    
+        <tr class="details-row">
+            <td class="details-key">
+                ID
+            </td>
+            <td class="details-value">
+                {{user.id}}
+            </td>
+        </tr>
+
+        <tr class="details-row">
+            <td class="details-key">
+                Email
+            </td>
+            <td class="details-value">
+                {{user.email}}
+            </td>
+        </tr>
+
+        <tr class="details-row">
+            <td class="details-key">
+                First name
+            </td>
+            <td class="details-value">
+                {{user.firstName}}
+            </td>
+        </tr>
+
+        <tr class="details-row">
+            <td class="details-key">
+                Last name
+            </td>
+            <td class="details-value">
+                {{user.lastName}}
+            </td>
+        </tr>
+
+        <tr class="details-row">
+            <td class="details-key">
+                Status
+            </td>
+            <td class="details-value">
+                {{user.status}}
+            </td>
+        </tr>
+
+        <tr class="details-row">
+            <td class="details-key">
+                Scope
+            </td>
+            <td class="details-value">
+                {{user.scope}}
+            </td>
+        </tr>
+    
+        <tr class="details-row">
+            <td class="details-key">
+                Created At
+            </td>
+            <td class="details-value">
+                {{user.createdAt}}
+            </td>
+        </tr>
+
+        <tr class="details-row">
+            <td class="details-key">
+                Permissions
+            </td>
+            <td class="details-value">
+                <div *ngFor="let permission of user.permissions">
+                    {{permission}}
+                </div>
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+

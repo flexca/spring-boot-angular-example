@@ -1,0 +1,73 @@
+<div class="top-items">
+    
+    <div class="top-items-title">
+        <h2 style="margin: 0;">Organization settings</h2>
+    </div>
+
+    <div class="top-items-actions">
+    
+        <button mat-mini-fab color="primary" [matMenuTriggerFor]="orgSettingsMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #orgSettingsMenu="matMenu">
+            <button mat-menu-item (click)="editOrgSettings($event)">Edit settings</button>
+            <button *ngIf="model.status === 'active'" mat-menu-item (click)="showConfirmation($event)">Disable organization</button>
+            <button *ngIf="model.status === 'disabled'" mat-menu-item (click)="showConfirmation($event)">Enable organization</button>
+        </mat-menu>
+
+    </div>
+
+</div>
+
+<div *ngIf="!fetchOrganizationError" class="details-wrapper">
+
+    <table class="details-table">
+    
+        <tr class="details-row">
+            <td class="details-key">
+                ID
+            </td>
+            <td class="details-value">
+                {{model.id}}
+            </td>
+        </tr>
+
+        <tr class="details-row">
+            <td class="details-key">
+                Name
+            </td>
+            <td class="details-value">
+                {{model.name}}
+            </td>
+        </tr>
+
+        <tr class="details-row">
+            <td class="details-key">
+                Description
+            </td>
+            <td class="details-value">
+                {{model.description}}
+            </td>
+        </tr>
+
+        <tr class="details-row">
+            <td class="details-key">
+                Status
+            </td>
+            <td class="details-value">
+                {{model.status}}
+            </td>
+        </tr>
+
+        <tr class="details-row">
+            <td class="details-key">
+                Created at
+            </td>
+            <td class="details-value">
+                {{model.createdAt}}
+            </td>
+        </tr>
+
+    </table>
+
+</div>

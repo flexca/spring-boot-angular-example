@@ -1,0 +1,136 @@
+<div *ngIf="getAvailableFilters().length > 0">
+
+    <h3>Select filter field and value:</h3>
+    
+    <table>
+
+        <tr>
+
+            <td style="padding-right: 20px;">
+                <mat-form-field>
+                    <mat-label>Select field</mat-label>
+                    <mat-select name="filterField" (selectionChange)="filterSelected($event.value)" [(value)]="selectedFilterField">
+                        <ng-container *ngFor="let filter of getAvailableFilters()">
+                            <mat-option [value]="filter.id">{{filter.title}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            
+            <td style="padding-right: 20px;">
+                
+                <ng-container *ngIf="TableWrapperFilterType.text == selectedFilterType">
+
+                    <mat-form-field class="filter-field-text">
+                        <mat-label>Enter value</mat-label>
+                        <input matInput name="filterValue" [(ngModel)]="selectedFilterValue">
+                    </mat-form-field>
+                
+                </ng-container>
+
+                <ng-container *ngIf="TableWrapperFilterType.fixed == selectedFilterType">
+
+                    <mat-form-field class="filter-field-fixed">
+                        <mat-label>Select value</mat-label>
+                        <mat-select name="filterValue" [(value)]="selectedFilterValue">
+                            <ng-container *ngFor="let filterItem of selectedFilterData">
+                                <mat-option [value]="filterItem.id">{{filterItem.title}}</mat-option>
+                            </ng-container>
+                        </mat-select>
+                    </mat-form-field>
+                
+                </ng-container>
+
+                <ng-container *ngIf="TableWrapperFilterType.date == selectedFilterType">
+                
+                    <mat-form-field>
+                        <mat-label>Start date</mat-label>
+                        <input matInput [matDatepicker]="startPicker" name="filterValueStart" [(ngModel)]="selectedFilterValueStart">
+                        <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #startPicker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>End date</mat-label>
+                        <input matInput [matDatepicker]="endPicker" name="filterValueEnd" [(ngModel)]="selectedFilterValueEnd">
+                        <mat-datepicker-toggle matIconSuffix [for]="endPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #endPicker></mat-datepicker>
+                    </mat-form-field>
+
+                </ng-container>
+
+            </td>
+
+            <td vAlign="top" style="padding-right: 20px;">
+                <button mat-fab color="primary" aria-label="Apply filter" (click)="applyFilter()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </td>
+
+        </tr>
+
+    </table>
+</div>
+
+<div *ngIf="selectedFilters.length > 0" class="selected-filters-wrapper">
+    <mat-chip-listbox>
+        <ng-container *ngFor="let filterItem of selectedFilters">
+            <mat-chip-row (removed)="remove(filterItem)" [editable]="false">
+            {{filterItem.toString()}}
+            <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+            </button>
+            </mat-chip-row>
+        </ng-container>
+    </mat-chip-listbox>
+</div>
+
+<table>
+    <tr>
+        <td>
+            Offset: {{offset}}
+        </td>
+        <td>
+            <button mat-icon-button [disabled]="offset <= 0" (click)="toPreviousPage()">
+                <mat-icon>navigate_before</mat-icon>
+            </button>
+        </td>
+        <td>
+            <button mat-icon-button [disabled]="!nextPage" (click)="toNextPage()">
+                <mat-icon>navigate_next</mat-icon>
+            </button>
+        </td>
+    </tr>
+</table>
+
+<table mat-table [dataSource]="dataSource" matSort (matSortChange)="onSortChange($event)" class="mat-elevation-z8">
+
+    <ng-container *ngFor="let column of columns; let columnIndex = index" [matColumnDef]="column.id">
+        <ng-container *ngIf="column.sorting">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{column.title}}
+            </th>
+        </ng-container>
+        <ng-container *ngIf="!column.sorting">
+            <th mat-header-cell *matHeaderCellDef>
+                {{column.title}}
+            </th>
+        </ng-container>
+        <td mat-cell *matCellDef="let element"> 
+            <ng-container *ngIf="column.link">
+                <a [routerLink]="element[column.id]['link']">
+                    {{element[column.id]['title']}}
+                </a>
+            </ng-container>
+            <ng-container *ngIf="!column.link">
+                {{element[column.id]}}
+            </ng-container>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+

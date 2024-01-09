@@ -1,0 +1,21 @@
+<div class="home-header">
+
+    <div class="header-icon">
+        <h1 style="color: white; margin: 0;">SpringBoot Angular Example Application</h1>
+    </div>
+
+    <div class="header-user" style="font-size: 16px;">
+
+        <div class="dropdown">
+            
+            <button mat-icon-button [matMenuTriggerFor]="headerMenu">
+                <mat-icon>person</mat-icon>
+            </button>
+            <mat-menu #headerMenu="matMenu">
+                <button mat-menu-item (click)="Logout($event)">Logout</button>
+            </mat-menu>
+            
+        </div>
+
+    </div>
+</div>

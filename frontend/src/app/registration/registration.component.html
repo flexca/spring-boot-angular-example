@@ -1,0 +1,91 @@
+<section class="ftco-section">
+  
+    <div class="container">
+      
+      <div class="row justify-content-center">
+
+        <mat-card class="registration-card">
+        
+          <mat-card-header>
+            
+            <mat-card-title>
+              <h2>Organization registration</h2>
+            </mat-card-title>
+  
+            <mat-card-subtitle>
+              <app-info-message [visible]="registrationError" [type]="errorMessageType" [message]="registrationErrorMessage" />
+            </mat-card-subtitle>
+  
+          </mat-card-header>
+  
+          <mat-card-content>
+
+              <form *ngIf="!registrationDone" class="form-full-width">
+
+                  <table style="width: 100%;">
+                      
+                    <tr>
+                    
+                      <td style="padding-right: 10px;">
+                        <mat-form-field class="form-field-full-width">
+                            <mat-label>Organization name</mat-label>
+                            <input matInput name="organizationName" [(ngModel)]="model.organizationName">
+                        </mat-form-field>
+                      </td>
+                      
+                      <td style="padding-left: 10px;">
+                        <mat-form-field class="form-field-full-width">
+                            <mat-label>Organization admin email</mat-label>
+                            <input matInput name="organizationAdminEmail" [(ngModel)]="model.organizationAdminEmail">
+                        </mat-form-field>                      
+                      </td>
+                    
+                    </tr>
+                    
+                    <tr>
+
+                      <td style="padding-right: 10px;">
+                        <mat-form-field class="form-field-full-width">
+                            <mat-label>Organization admin first name</mat-label>
+                            <input matInput name="organizationAdminFirstName" [(ngModel)]="model.organizationAdminFirstName">
+                        </mat-form-field>
+                      </td>
+                      
+                      <td style="padding-left: 10px;">
+                        <mat-form-field class="form-field-full-width">
+                            <mat-label>Organization admin last name</mat-label>
+                            <input matInput name="organizationAdminLastName" [(ngModel)]="model.organizationAdminLastName">
+                        </mat-form-field>                      
+                      </td>
+
+                    </tr>
+
+                    <tr>
+                      <td colspan="2">
+                        <mat-form-field class="form-field-full-width">
+                            <mat-label>Organization description</mat-label>
+                            <textarea matInput name="organizationDescription" [(ngModel)]="model.organizationDescription"></textarea>
+                        </mat-form-field>
+                      </td>
+                    </tr>
+
+                  </table>
+            
+                  <button mat-raised-button color="primary" (click)="onSubmit()">Register organization</button>
+                  <button mat-raised-button (click)="cancel()" style="margin-left: 10px;">Cancel</button>
+
+              </form>
+            
+              <div *ngIf="registrationDone">
+                  Email with link to confirm your organization was sent to your email. Follow link to complete reset password.
+              </div>
+              
+          </mat-card-content>
+      
+        </mat-card>
+
+      </div>
+
+    </div>
+  
+  </section>

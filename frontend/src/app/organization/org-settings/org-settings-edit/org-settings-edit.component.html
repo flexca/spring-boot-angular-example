@@ -1,0 +1,28 @@
+<section class="ftco-section">
+    
+    <div class="form-single-row">
+
+        <h2>Edit organization settings</h2>
+    
+        <app-info-message [visible]="updateOrganizationError" [type]="errorMessageType" [message]="updateOrganizationErrorMessage" />
+    
+        <form class="form-full-width">
+            
+            <mat-form-field class="form-field-full-width">
+                <mat-label>Organization name</mat-label>
+                <input matInput name="name" [(ngModel)]="model.name">
+            </mat-form-field>
+
+            <mat-form-field class="form-field-full-width">
+                <mat-label>Organization description</mat-label>
+                <input matInput name="description" [(ngModel)]="model.description">
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" (click)="onSubmit()">Save settings</button>
+            <button mat-raised-button (click)="cancel()" style="margin-left: 20px;">Cancel</button>
+            
+        </form>
+
+    </div>
+
+</section>

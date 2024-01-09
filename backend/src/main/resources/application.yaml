@@ -1,0 +1,22 @@
+server:
+  base-url:
+
+database:
+  url: 'mongodb://mongo:27017/?timeoutMS=30000'
+  schema: sbae
+  encryption-key: secretkey
+
+mail:
+  username: info@example.org
+  password: password
+  smtp:
+    auth: true
+    starttls:
+      enable: true
+    host: localhost
+    port: 1025
+
+ignite:
+  kubernetes:
+    namespace: sbae
+    servicename: ignite-service
