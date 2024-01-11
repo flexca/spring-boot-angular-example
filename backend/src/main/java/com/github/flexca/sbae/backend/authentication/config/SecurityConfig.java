@@ -31,28 +31,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
-                    // auth.requestMatchers("/**").permitAll();
-                    // auth.requestMatchers("/api/auth/**").permitAll();
                     auth.requestMatchers(HttpMethod.OPTIONS,"/**").permitAll();
                     auth.anyRequest().authenticated();
                 })
-                //.sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                //.oauth2ResourceServer((oauth2) -> oauth2.jwt((jwt) -> jwt.decoder(jwtDecoder())))
-                //.userDetailsService(userDetailsService)
                 .addFilterBefore(sbaeAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                // .httpBasic(Customizer.withDefaults())
                 .build();
     }
-
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("*"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
-
 }
